@@ -7,7 +7,7 @@ pipeline{
         stage("sonar quality check"){
             agent {
                 docker {
-                    image 'openjdk:8u332-oraclelinux8'
+                    image 'openjdk:19-jdk'
                 }
             }
             steps{
@@ -17,7 +17,7 @@ pipeline{
                             sh './gradlew sonarqube'
                     }
 
-                    timeout(time: 1, unit: 'HOURS') {
+                    timeout(time: 0.25, unit: 'HOURS') {
                       def qg = waitForQualityGate()
                       if (qg.status != 'OK') {
                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
