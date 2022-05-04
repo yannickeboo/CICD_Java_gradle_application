@@ -1,5 +1,5 @@
 # this is multi stage 
-FROM openjdk:11 as base 
+FROM openjdk:8u332-oraclelinux8 as base 
 WORKDIR /app
 COPY . . 
 RUN chmod +x gradlew
